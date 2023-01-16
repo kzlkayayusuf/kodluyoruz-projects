@@ -1,5 +1,7 @@
 package java102.adventureGame;
 
+import java.util.Scanner;
+
 import java102.adventureGame.character.Archer;
 import java102.adventureGame.character.Cavalier;
 import java102.adventureGame.character.GameCharacter;
@@ -11,22 +13,52 @@ public class Player {
     private int coin;
     private String name;
     private String charName;
+    private Scanner input = new Scanner(System.in);
 
     public Player(String name) {
         this.name = name;
     }
 
     public void selectChar() {
-        GameCharacter[] charList = { new Samurai(), new Cavalier(), new Archer() };
+        GameCharacter[] charList = { new Samurai(), new Archer(), new Cavalier() };
 
-        System.out.println("********************************");
+        System.out.println("Characters");
+        System.out.println("****************************************************************");
 
         for (GameCharacter gameCharacter : charList) {
-            System.out.println("Character: " + gameCharacter.getName() +
+            System.out.println("ID: " + gameCharacter.getId() +
+                    "\t Character: " + gameCharacter.getName() +
                     "\t Damage: " + gameCharacter.getDamage() +
                     "\t Health: " + gameCharacter.getHealth() +
                     "\t Coin: " + gameCharacter.getCoin());
         }
+        System.out.println("****************************************************************");
+        System.out.print("Please choose a character: ");
+        int selectChar = input.nextInt();
+        switch (selectChar) {
+            case 1:
+                initPlayer(new Samurai());
+                break;
+            case 2:
+                initPlayer(new Archer());
+                break;
+            case 3:
+                initPlayer(new Cavalier());
+                break;
+
+            default:
+                initPlayer(new Samurai());
+                break;
+        }
+        System.out.println("Character: " + this.getCharName() + ", Damage: " + this.getDamage() + ", Health: "
+                + this.getHealth() + ", Coin: " + this.getCoin());
+    }
+
+    public void initPlayer(GameCharacter gameCharacter) {
+        this.setDamage(gameCharacter.getDamage());
+        this.setHealth(gameCharacter.getHealth());
+        this.setCoin(gameCharacter.getCoin());
+        this.setCharName(gameCharacter.getName());
     }
 
     public int getDamage() {

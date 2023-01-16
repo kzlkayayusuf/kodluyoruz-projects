@@ -12,7 +12,7 @@ public class Game {
         String playerName = input.nextLine();
         Player player = new Player(playerName);
         System.out.println(player.getName() + " welcome to this dark and foggy island");
-        System.out.println("Please choose a character: ");
+
         player.selectChar();
     }
 }

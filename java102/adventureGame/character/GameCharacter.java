@@ -1,12 +1,14 @@
 package java102.adventureGame.character;
 
 public abstract class GameCharacter {
+    private int id;
     private String name;
     private int damage;
     private int health;
     private int coin;
 
-    public GameCharacter(String name, int damage, int health, int coin) {
+    public GameCharacter(int id, String name, int damage, int health, int coin) {
+        this.id = id;
         this.name = name;
         this.damage = damage;
         this.health = health;
@@ -43,6 +45,14 @@ public abstract class GameCharacter {
 
     public void setCoin(int coin) {
         this.coin = coin;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 }
