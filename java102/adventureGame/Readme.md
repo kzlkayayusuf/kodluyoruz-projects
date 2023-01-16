@@ -28,11 +28,11 @@ SİLAHLAR
 
 ZIRHLAR
 
-| Zırh    | ID  | Engelleme | Para |
-| :------ | :-: | :-------: | :--: |
-| Tabanca |  1  |     1     |  15  |
-| Kılıç   |  2  |     3     |  25  |
-| Tüfek   |  3  |     5     |  40  |
+| Zırh  | ID  | Engelleme | Para |
+| :---- | :-: | :-------: | :--: |
+| Hafif |  1  |     1     |  15  |
+| Orta  |  2  |     3     |  25  |
+| Ağır  |  3  |     5     |  40  |
 
 ## MEKANLAR
 

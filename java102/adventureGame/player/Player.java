@@ -1,4 +1,4 @@
-package java102.adventureGame;
+package java102.adventureGame.player;
 
 import java.util.Scanner;
 
@@ -13,10 +13,12 @@ public class Player {
     private int coin;
     private String name;
     private String charName;
+    private Inventory inventory;
     private Scanner input = new Scanner(System.in);
 
     public Player(String name) {
         this.name = name;
+        this.inventory = new Inventory();
     }
 
     public void selectChar() {
@@ -54,6 +56,14 @@ public class Player {
                 + this.getHealth() + ", Coin: " + this.getCoin());
     }
 
+    public void printInfo() {
+        System.out.println(
+                "Your Weapon: " + this.getInventory().getWeapon().getName() +
+                        ", Your Damage: " + this.getDamage() +
+                        ", Your Health: " + this.getHealth() +
+                        ", Your Coin: " + this.getCoin());
+    }
+
     public void initPlayer(GameCharacter gameCharacter) {
         this.setDamage(gameCharacter.getDamage());
         this.setHealth(gameCharacter.getHealth());
@@ -62,7 +72,7 @@ public class Player {
     }
 
     public int getDamage() {
-        return damage;
+        return damage + this.getInventory().getWeapon().getDamage();
     }
 
     public void setDamage(int damage) {
@@ -99,6 +109,14 @@ public class Player {
 
     public void setCharName(String charName) {
         this.charName = charName;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 
 }
