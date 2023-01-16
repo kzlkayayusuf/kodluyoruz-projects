@@ -6,6 +6,7 @@ import java102.adventureGame.character.Archer;
 import java102.adventureGame.character.Cavalier;
 import java102.adventureGame.character.GameCharacter;
 import java102.adventureGame.character.Samurai;
+import java102.adventureGame.stuff.Weapon;
 
 public class Player {
     private int damage;
@@ -61,7 +62,7 @@ public class Player {
                 "Your Weapon: " + this.getInventory().getWeapon().getName() +
                         ", Your Armor: " + this.getInventory().getArmor().getName() +
                         ", Block: " + this.getInventory().getArmor().getBlock() +
-                        ", Your Damage: " + this.getDamage() +
+                        ", Your Damage: " + this.getTotalDamage() +
                         ", Your Health: " + this.getHealth() +
                         ", Your Coin: " + this.getCoin());
     }
@@ -73,8 +74,12 @@ public class Player {
         this.setCharName(gameCharacter.getName());
     }
 
-    public int getDamage() {
+    public int getTotalDamage() {
         return damage + this.getInventory().getWeapon().getDamage();
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     public void setDamage(int damage) {
@@ -119,6 +124,10 @@ public class Player {
 
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
+    }
+
+    public Weapon getWeapon() {
+        return this.getInventory().getWeapon();
     }
 
 }
