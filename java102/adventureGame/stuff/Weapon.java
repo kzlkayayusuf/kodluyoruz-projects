@@ -1,4 +1,4 @@
-package java102.adventureGame.weapon;
+package java102.adventureGame.stuff;
 
 public class Weapon {
     private int id;
@@ -15,7 +15,7 @@ public class Weapon {
 
     public static Weapon[] weapons() {
         Weapon[] weaponList = new Weapon[3];
-        weaponList[0] = new Weapon(1, 2, 5, "pistol");
+        weaponList[0] = new Weapon(1, 2, 25, "pistol");
         weaponList[1] = new Weapon(2, 3, 35, "sword");
         weaponList[2] = new Weapon(3, 7, 45, "rifle");
         return weaponList;

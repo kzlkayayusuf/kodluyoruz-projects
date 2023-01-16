@@ -28,9 +28,14 @@ public class Game {
             System.out.println();
             System.out.println("1 - Safe House  --> Here haven't any enemy");
             System.out.println("2 - Tool Store --> Here you can buy weapon or shield");
+            System.out.println("0 - End the Game");
+
             System.out.print("Please choose a location: ");
             int selectLocation = input.nextInt();
             switch (selectLocation) {
+                case 0:
+                    location = null;
+                    break;
                 case 1:
                     location = new SafeHouse(player);
                     break;
@@ -41,8 +46,10 @@ public class Game {
                     location = new SafeHouse(player);
                     break;
             }
-            if (!location.onLocation()) {
-                System.out.println("Game Over!");
+            if (location == null || !(location.onLocation())) {
+                System.out.println(
+                        location == null ? "You quickly gave up on this dark and foggy island :) , see you again"
+                                : "Game Over!");
                 break;
             }
         }
