@@ -48,7 +48,7 @@ public class ToolStore extends NormalLocation {
     }
 
     public void printWeapon() {
-        System.out.println("**********Weapons**********");
+        System.out.println("********** Weapons **********");
         for (Weapon w : Weapon.weapons()) {
             System.out.println(
                     w.getId() + " - " + w.getName() + " < Coin: " + w.getPrice() + " , Damage: " + w.getDamage()
@@ -71,16 +71,16 @@ public class ToolStore extends NormalLocation {
             Weapon selectedWeapon = Weapon.getWeaponObjByID(selectWeaponID);
             if (selectedWeapon != null) {
                 if (selectedWeapon.getPrice() > this.getPlayer().getCoin()) {
-                    System.out.println("you don't have enough coin!");
+                    System.out.println("You don't have enough coin!");
                 } else {
                     System.out.println(selectedWeapon.getName() + " was bought!");
                     int balance = this.getPlayer().getCoin() - selectedWeapon.getPrice();
                     this.getPlayer().setCoin(balance);
                     System.out.println("Your remaining balance: " + this.getPlayer().getCoin());
                     System.out
-                            .println("your previous weapon: " + this.getPlayer().getInventory().getWeapon().getName());
+                            .println("Your previous weapon: " + this.getPlayer().getInventory().getWeapon().getName());
                     this.getPlayer().getInventory().setWeapon(selectedWeapon);
-                    System.out.println("your current weapon: " + this.getPlayer().getInventory().getWeapon().getName());
+                    System.out.println("Your current weapon: " + this.getPlayer().getInventory().getWeapon().getName());
 
                 }
             }
@@ -88,7 +88,7 @@ public class ToolStore extends NormalLocation {
     }
 
     public void printArmor() {
-        System.out.println("**********Armors**********");
+        System.out.println("********** Armors **********");
         for (Armor a : Armor.armors()) {
             System.out.println(
                     a.getId() + " - " + a.getName() + "< Coin: " + a.getPrice() + " , Armor: " + a.getBlock() + " >");
@@ -115,9 +115,9 @@ public class ToolStore extends NormalLocation {
                     int balance = this.getPlayer().getCoin() - selectedArmor.getPrice();
                     this.getPlayer().setCoin(balance);
                     System.out.println("Your remaining balance: " + this.getPlayer().getCoin());
-                    System.out.println("your previous armor: " + this.getPlayer().getInventory().getArmor().getName());
+                    System.out.println("Your previous armor: " + this.getPlayer().getInventory().getArmor().getName());
                     this.getPlayer().getInventory().setArmor(selectedArmor);
-                    System.out.println("your current armor: " + this.getPlayer().getInventory().getArmor().getName());
+                    System.out.println("Your current armor: " + this.getPlayer().getInventory().getArmor().getName());
 
                 }
             }

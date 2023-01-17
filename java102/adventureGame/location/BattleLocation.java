@@ -10,49 +10,73 @@ public abstract class BattleLocation extends Location {
     private Monster monster;
     private String award;
     private int maxMonster;
+    private int index;
 
-    public BattleLocation(Player player, String name, Monster monster, String award, int maxMonster) {
+    public BattleLocation(Player player, String name, Monster monster, String award, int maxMonster, int index) {
         super(player, name);
         this.monster = monster;
         this.award = award;
         this.maxMonster = maxMonster;
+        this.index = index;
     }
 
     @Override
     public boolean onLocation() {
         int monsterNumber = this.randomMonsterNumber();
-        System.out.println("you're here now: " + this.getName());
+        System.out.println(
+                "###################################################################################################");
+        System.out.println("You're here now: " + this.getName());
         System.out.println("Be Careful! " + monsterNumber + " " + this.getMonster().getName() + " live here!");
         System.out.print("<F>ight or <R>un away: ");
         String selectBattleCase = input.nextLine();
+        while (!((selectBattleCase.equalsIgnoreCase("f")) || (selectBattleCase.equalsIgnoreCase("r")))) {
+            System.out.print("invalid value,  please re-enter: ");
+            selectBattleCase = input.nextLine();
+        }
         if (selectBattleCase.equalsIgnoreCase("f") && combat(monsterNumber)) {
-            System.out.println("***********battle area***********");
-            System.out.println("you defeated all the enemies in the " + this.getName());
+            System.out.println(
+                    "###################################################################################################");
+            System.out.println("You defeated all the enemies in the " + this.getName());
+
+            saveAwards();
             return true;
 
         }
-        if (this.getPlayer().getHealth() < 0) {
+        if (this.getPlayer().getHealth() <= 0) {
             System.out.println("You're dead!");
             return false;
         }
         return true;
     }
 
+    public void saveAwards() {
+        String[] awards = this.getPlayer().getInventory().getAwards();
+        awards[getIndex()] = getAward();
+        this.getPlayer().getInventory().setAwards(awards);
+        System.out.println("Your Award: " + getAward());
+    }
+
     public boolean combat(int monsterNumber) {
         for (int i = 1; i <= monsterNumber; i++) {
             this.getMonster().setHealth(this.getMonster().getOriginalHealth());
+            System.out.println(
+                    "########################################### Battle Area ###########################################");
             playerStats();
             monsterStats(i);
             while (this.getPlayer().getHealth() > 0 && this.getMonster().getHealth() > 0) {
-                System.out.print("<H>it or <R>un away");
+                System.out.print("<H>it or <R>un away: ");
                 String selectCombat = input.nextLine();
+                while (!(selectCombat.equalsIgnoreCase("h")) && !(selectCombat.equalsIgnoreCase("r"))) {
+                    System.out.print("invalid value,  please re-enter: ");
+                    selectCombat = input.nextLine();
+                }
                 if (selectCombat.equalsIgnoreCase("h")) {
-                    System.out.println("You hit!");
+                    System.out.println("***** You hit! *****");
                     this.getMonster().setHealth(this.monster.getHealth() - this.getPlayer().getTotalDamage());
                     afterHit();
                     if (this.getMonster().getHealth() > 0) {
                         System.out.println();
-                        System.out.println("Monster hits you!");
+                        System.out.println("***** Monster hits you! *****");
                         int monsterDamage = this.getMonster().getDamage()
                                 - this.getPlayer().getInventory().getArmor().getBlock();
                         if (monsterDamage < 0)
@@ -65,10 +89,10 @@ public abstract class BattleLocation extends Location {
                 }
             }
             if (this.getMonster().getHealth() < this.getPlayer().getHealth()) {
-                System.out.println("you defeated the monster");
+                System.out.println("***** You defeated the monster *****");
                 System.out.println(this.getMonster().getAward() + " coin you won!");
                 this.getPlayer().setCoin(this.getPlayer().getCoin() + this.getMonster().getAward());
-                System.out.println("your current coin: " + this.getPlayer().getCoin());
+                System.out.println("Your current coin: " + this.getPlayer().getCoin());
             } else {
                 return false;
             }
@@ -79,7 +103,6 @@ public abstract class BattleLocation extends Location {
     public void afterHit() {
         System.out.println("Your Health: " + this.getPlayer().getHealth());
         System.out.println(this.monster.getName() + "\'s Health: " + this.monster.getHealth());
-        System.out.println();
     }
 
     public void playerStats() {
@@ -91,7 +114,7 @@ public abstract class BattleLocation extends Location {
         System.out.println("Weapon: " + this.getPlayer().getInventory().getWeapon().getName());
         System.out.println("Armor: " + this.getPlayer().getInventory().getArmor().getName());
         System.out.println("Block: " + this.getPlayer().getInventory().getArmor().getBlock());
-        System.out.println();
+        System.out.println("************************");
 
     }
 
@@ -101,7 +124,7 @@ public abstract class BattleLocation extends Location {
         System.out.println("Health: " + this.getMonster().getHealth());
         System.out.println("Damage: " + this.getMonster().getDamage());
         System.out.println("Award: " + this.getMonster().getAward());
-        System.out.println();
+        System.out.println("************************");
     }
 
     public int randomMonsterNumber() {
@@ -132,6 +155,14 @@ public abstract class BattleLocation extends Location {
 
     public void setMaxMonster(int maxMonster) {
         this.maxMonster = maxMonster;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
 }

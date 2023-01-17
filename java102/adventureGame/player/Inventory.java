@@ -7,10 +7,12 @@ public class Inventory {
 
     private Weapon weapon;
     private Armor armor;
+    private String[] awards;
 
     public Inventory() {
-        this.weapon = new Weapon(-1, 0, 0, "punch");
+        this.weapon = new Weapon(-1, "Punch", 0, 0);
         this.armor = new Armor(-1, "Bum Fodder", 0, 0);
+        this.awards = new String[3];
     }
 
     public Weapon getWeapon() {
@@ -27,6 +29,22 @@ public class Inventory {
 
     public void setArmor(Armor armor) {
         this.armor = armor;
+    }
+
+    public String[] getAwards() {
+        return awards;
+    }
+
+    public void setAwards(String[] awards) {
+        this.awards = awards;
+    }
+
+    public String printAwards() {
+        String item = "";
+        for (String award : getAwards()) {
+            item += (award + ", ");
+        }
+        return item;
     }
 
 }

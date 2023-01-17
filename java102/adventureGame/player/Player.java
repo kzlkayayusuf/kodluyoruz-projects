@@ -11,6 +11,7 @@ import java102.adventureGame.stuff.Weapon;
 public class Player {
     private int damage;
     private int health;
+    private int originalHealth;
     private int coin;
     private String name;
     private String charName;
@@ -25,8 +26,11 @@ public class Player {
     public void selectChar() {
         GameCharacter[] charList = { new Samurai(), new Archer(), new Cavalier() };
 
+        System.out.println(
+                "****************************************************************************************************");
         System.out.println("Characters");
-        System.out.println("****************************************************************");
+        System.out.println(
+                "****************************************************************************************************");
 
         for (GameCharacter gameCharacter : charList) {
             System.out.println("ID: " + gameCharacter.getId() +
@@ -35,7 +39,8 @@ public class Player {
                     "\t Health: " + gameCharacter.getHealth() +
                     "\t Coin: " + gameCharacter.getCoin());
         }
-        System.out.println("****************************************************************");
+        System.out.println(
+                "****************************************************************************************************");
         System.out.print("Please choose a character: ");
         int selectChar = input.nextInt();
         switch (selectChar) {
@@ -61,6 +66,7 @@ public class Player {
         System.out.println(
                 "Your Weapon: " + this.getInventory().getWeapon().getName() +
                         ", Your Armor: " + this.getInventory().getArmor().getName() +
+                        ", Your Award(s): " + this.getInventory().printAwards() +
                         ", Block: " + this.getInventory().getArmor().getBlock() +
                         ", Your Damage: " + this.getTotalDamage() +
                         ", Your Health: " + this.getHealth() +
@@ -70,6 +76,7 @@ public class Player {
     public void initPlayer(GameCharacter gameCharacter) {
         this.setDamage(gameCharacter.getDamage());
         this.setHealth(gameCharacter.getHealth());
+        this.setOriginalHealth(gameCharacter.getHealth());
         this.setCoin(gameCharacter.getCoin());
         this.setCharName(gameCharacter.getName());
     }
@@ -91,6 +98,8 @@ public class Player {
     }
 
     public void setHealth(int health) {
+        if (health < 0)
+            health = 0;
         this.health = health;
     }
 
@@ -128,6 +137,14 @@ public class Player {
 
     public Weapon getWeapon() {
         return this.getInventory().getWeapon();
+    }
+
+    public int getOriginalHealth() {
+        return originalHealth;
+    }
+
+    public void setOriginalHealth(int originalHealth) {
+        this.originalHealth = originalHealth;
     }
 
 }

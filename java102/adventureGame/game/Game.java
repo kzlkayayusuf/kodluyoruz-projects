@@ -18,7 +18,12 @@ public class Game {
         System.out.println("welcome to adventure game!");
         System.out.print("Please enter your name: ");
         String playerName = input.nextLine();
-        Player player = new Player(playerName);
+        while (playerName.length() < 3 || playerName.isBlank() || playerName.isEmpty()) {
+            System.out.print("invalid name, please re-enter: ");
+            playerName = input.nextLine();
+        }
+
+        Player player = new Player(playerName.toUpperCase());
         System.out.println(player.getName() + " welcome to this dark and foggy island");
 
         player.selectChar();
@@ -27,7 +32,8 @@ public class Game {
         while (true) {
             player.printInfo();
             System.out.println();
-            System.out.println("**********Locations**********");
+            System.out.println(
+                    "############################################ Locations ############################################");
             System.out.println();
             System.out.println("1 - Safe House  --> Here haven't any enemy");
             System.out.println("2 - Tool Store --> Here you can buy weapon or shield");
@@ -36,7 +42,8 @@ public class Game {
                     "4 - Forest --> Enter the forest, Award: <Firewood>, The vampire may come out, be careful! ");
             System.out.println("5 - River --> Enter the river, Award: <Water>, The bear may come out, be careful! ");
             System.out.println("0 - End the Game");
-
+            System.out.println(
+                    "###################################################################################################");
             System.out.print("Please choose a location: ");
             int selectLocation = input.nextInt();
             switch (selectLocation) {
@@ -50,18 +57,29 @@ public class Game {
                     location = new ToolStore(player);
                     break;
                 case 3:
+                    if (player.getInventory().getAwards()[0] != null) {
+                        System.out.println("You won the award here, you can't fight again!");
+                        continue;
+                    }
                     location = new Cave(player);
                     break;
                 case 4:
+                    if (player.getInventory().getAwards()[1] != null) {
+                        System.out.println("You won the award here, you can't fight again!");
+                        continue;
+                    }
                     location = new Forest(player);
                     break;
                 case 5:
+                    if (player.getInventory().getAwards()[2] != null) {
+                        System.out.println("You won the award here, you can't fight again!");
+                        continue;
+                    }
                     location = new River(player);
                     break;
                 default:
-                    location = new SafeHouse(player);
-                    // System.out.println("please select a valid field!");
-                    break;
+                    System.out.println("Please select a valid field!");
+                    continue;
             }
             if (location == null || !(location.onLocation())) {
                 System.out.println(
