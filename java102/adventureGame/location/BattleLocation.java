@@ -71,19 +71,8 @@ public abstract class BattleLocation extends Location {
                     selectCombat = input.nextLine();
                 }
                 if (selectCombat.equalsIgnoreCase("h")) {
-                    System.out.println("***** You hit! *****");
-                    this.getMonster().setHealth(this.monster.getHealth() - this.getPlayer().getTotalDamage());
-                    afterHit();
-                    if (this.getMonster().getHealth() > 0) {
-                        System.out.println();
-                        System.out.println("***** Monster hits you! *****");
-                        int monsterDamage = this.getMonster().getDamage()
-                                - this.getPlayer().getInventory().getArmor().getBlock();
-                        if (monsterDamage < 0)
-                            monsterDamage = 0;
-                        this.getPlayer().setHealth(this.getPlayer().getHealth() - monsterDamage);
-                        afterHit();
-                    }
+                    fight();
+
                 } else {
                     return false;
                 }
@@ -100,9 +89,48 @@ public abstract class BattleLocation extends Location {
         return true;
     }
 
+    private void fight() {
+        if (randomAttack()) {
+            System.out.println("***** You hit! *****");
+            this.getMonster().setHealth(this.monster.getHealth() - this.getPlayer().getTotalDamage());
+            afterHit();
+            if (this.getMonster().getHealth() > 0) {
+                System.out.println();
+                System.out.println("***** Monster hits you! *****");
+                int monsterDamage = this.getMonster().getDamage()
+                        - this.getPlayer().getInventory().getArmor().getBlock();
+                if (monsterDamage < 0)
+                    monsterDamage = 0;
+                this.getPlayer().setHealth(this.getPlayer().getHealth() - monsterDamage);
+                afterHit();
+            }
+        } else {
+            if (this.getMonster().getHealth() > 0) {
+                System.out.println("***** Monster hits you! *****");
+                int monsterDamage = this.getMonster().getDamage()
+                        - this.getPlayer().getInventory().getArmor().getBlock();
+                if (monsterDamage < 0)
+                    monsterDamage = 0;
+                this.getPlayer().setHealth(this.getPlayer().getHealth() - monsterDamage);
+                afterHit();
+            }
+            if (this.getPlayer().getHealth() > 0) {
+                System.out.println();
+                System.out.println("***** You hit! *****");
+                this.getMonster().setHealth(this.monster.getHealth() - this.getPlayer().getTotalDamage());
+                afterHit();
+            }
+        }
+    }
+
     public void afterHit() {
         System.out.println("Your Health: " + this.getPlayer().getHealth());
         System.out.println(this.monster.getName() + "\'s Health: " + this.monster.getHealth());
+    }
+
+    public boolean randomAttack() {
+        double randomNumber = Math.random() * 100;
+        return (randomNumber >= 50);
     }
 
     public void playerStats() {
