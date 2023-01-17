@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java102.adventureGame.location.Cave;
 import java102.adventureGame.location.Forest;
 import java102.adventureGame.location.Location;
+import java102.adventureGame.location.Mine;
 import java102.adventureGame.location.River;
 import java102.adventureGame.location.SafeHouse;
 import java102.adventureGame.location.ToolStore;
@@ -41,6 +42,7 @@ public class Game {
             System.out.println(
                     "4 - Forest --> Enter the forest, Award: <Firewood>, The vampire may come out, be careful! ");
             System.out.println("5 - River --> Enter the river, Award: <Water>, The bear may come out, be careful! ");
+            System.out.println("6 - Mine --> Enter the mine, Award: <Surprise>, The snake may come out, be careful! ");
             System.out.println("0 - End the Game");
             System.out.println(
                     "###################################################################################################");
@@ -76,6 +78,13 @@ public class Game {
                         continue;
                     }
                     location = new River(player);
+                    break;
+                case 6:
+                    if (player.getInventory().getAwards()[3] != null) {
+                        System.out.println("You won the award here, you can't fight again!");
+                        continue;
+                    }
+                    location = new Mine(player);
                     break;
                 default:
                     System.out.println("Please select a valid field!");

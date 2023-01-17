@@ -4,6 +4,8 @@ import java.util.Random;
 
 import java102.adventureGame.monster.Monster;
 import java102.adventureGame.player.Player;
+import java102.adventureGame.stuff.Armor;
+import java102.adventureGame.stuff.Weapon;
 
 public abstract class BattleLocation extends Location {
 
@@ -79,14 +81,145 @@ public abstract class BattleLocation extends Location {
             }
             if (this.getMonster().getHealth() < this.getPlayer().getHealth()) {
                 System.out.println("***** You defeated the monster *****");
+                if (this.getName() == "Mine")
+                    surpriseGift();
                 System.out.println(this.getMonster().getAward() + " coin you won!");
                 this.getPlayer().setCoin(this.getPlayer().getCoin() + this.getMonster().getAward());
                 System.out.println("Your current coin: " + this.getPlayer().getCoin());
+                if (this.getMonster().getName() == "Snake") {
+                    this.getMonster().setAward(this.getMonster().getOriginalAward());
+                    this.getMonster().setDamage(this.getMonster().getOriginalDamage());
+                }
             } else {
                 return false;
             }
         }
         return true;
+    }
+
+    private void surpriseGift() {
+        Random random = new Random();
+        int chance = random.nextInt(101);
+        if (chance >= 0 && chance < 15) {
+            // win a weapon
+            chance = random.nextInt(101);
+            if (chance >= 0 && chance <= 20) {
+                Weapon weapon = Weapon.getWeaponObjByID(3);
+                System.out.println("Congrats, You win Rifle!");
+                System.out.println("Your previous weapon: " + this.getPlayer().getInventory().getWeapon().getName());
+                System.out.print("Do you want to save that gift? <Y>es or <N>o: ");
+                String choose = input.nextLine();
+                while (!(choose.equalsIgnoreCase("y") || choose.equalsIgnoreCase("n"))) {
+                    System.out.print("invalid value, please re-enter: ");
+                    choose = input.nextLine();
+                }
+                if (choose.equalsIgnoreCase("y")) {
+                    this.getPlayer().getInventory().setWeapon(weapon);
+                    System.out.println("Your current weapon: " + this.getPlayer().getInventory().getWeapon().getName());
+                } else if (choose.equalsIgnoreCase("n")) {
+                    System.out.println("You missed gift!");
+                }
+            } else if (chance > 20 && chance < 51) {
+                Weapon weapon = Weapon.getWeaponObjByID(2);
+                System.out.println("Congrats, You win Sword!");
+                System.out.println("Your previous weapon: " + this.getPlayer().getInventory().getWeapon().getName());
+                System.out.print("Do you want to save that gift? <Y>es or <N>o: ");
+                String choose = input.nextLine();
+                while (!(choose.equalsIgnoreCase("y") || choose.equalsIgnoreCase("n"))) {
+                    System.out.print("invalid value, please re-enter: ");
+                    choose = input.nextLine();
+                }
+                if (choose.equalsIgnoreCase("y")) {
+                    this.getPlayer().getInventory().setWeapon(weapon);
+                    System.out.println("Your current weapon: " + this.getPlayer().getInventory().getWeapon().getName());
+                } else if (choose.equalsIgnoreCase("n")) {
+                    System.out.println("You missed gift!");
+                }
+            } else if (chance > 51 && chance <= 100) {
+                Weapon weapon = Weapon.getWeaponObjByID(1);
+                System.out.println("Congrats, You win Pistol!");
+                System.out.println("Your previous weapon: " + this.getPlayer().getInventory().getWeapon().getName());
+                System.out.print("Do you want to save that gift? <Y>es or <N>o: ");
+                String choose = input.nextLine();
+                while (!(choose.equalsIgnoreCase("y") || choose.equalsIgnoreCase("n"))) {
+                    System.out.print("invalid value, please re-enter: ");
+                    choose = input.nextLine();
+                }
+                if (choose.equalsIgnoreCase("y")) {
+                    this.getPlayer().getInventory().setWeapon(weapon);
+                    System.out.println("Your current weapon: " + this.getPlayer().getInventory().getWeapon().getName());
+                } else if (choose.equalsIgnoreCase("n")) {
+                    System.out.println("You missed gift!");
+                }
+            }
+        } else if (chance >= 15 && chance < 30) {
+            // win an armor
+            chance = random.nextInt(101);
+            if (chance >= 0 && chance <= 20) {
+                Armor armor = Armor.getArmorObjByID(3);
+                System.out.println("Congrats, You win Heavy Armor!");
+                System.out.println("Your previous armor: " + this.getPlayer().getInventory().getArmor().getName());
+                System.out.print("Do you want to save that gift? <Y>es or <N>o: ");
+                String choose = input.nextLine();
+                while (!(choose.equalsIgnoreCase("y") || choose.equalsIgnoreCase("n"))) {
+                    System.out.print("invalid value, please re-enter: ");
+                    choose = input.nextLine();
+                }
+                if (choose.equalsIgnoreCase("y")) {
+                    this.getPlayer().getInventory().setArmor(armor);
+                    System.out.println("Your current armor: " + this.getPlayer().getInventory().getArmor().getName());
+                } else if (choose.equalsIgnoreCase("n")) {
+                    System.out.println("You missed gift!");
+                }
+            } else if (chance > 20 && chance < 51) {
+                Armor armor = Armor.getArmorObjByID(2);
+                System.out.println("Congrats, You win Intermediate Armor!");
+                System.out.println("Your previous armor: " + this.getPlayer().getInventory().getArmor().getName());
+                System.out.print("Do you want to save that gift? <Y>es or <N>o: ");
+                String choose = input.nextLine();
+                while (!(choose.equalsIgnoreCase("y") || choose.equalsIgnoreCase("n"))) {
+                    System.out.print("invalid value, please re-enter: ");
+                    choose = input.nextLine();
+                }
+                if (choose.equalsIgnoreCase("y")) {
+                    this.getPlayer().getInventory().setArmor(armor);
+                    System.out.println("Your current armor: " + this.getPlayer().getInventory().getArmor().getName());
+                } else if (choose.equalsIgnoreCase("n")) {
+                    System.out.println("You missed gift!");
+                }
+            } else if (chance > 51 && chance <= 100) {
+                Armor armor = Armor.getArmorObjByID(1);
+                System.out.println("Congrats, You win Slight Armor!");
+                System.out.println("Your previous armor: " + this.getPlayer().getInventory().getArmor().getName());
+                System.out.print("Do you want to save that gift? <Y>es or <N>o: ");
+                String choose = input.nextLine();
+                while (!(choose.equalsIgnoreCase("y") || choose.equalsIgnoreCase("n"))) {
+                    System.out.print("invalid value, please re-enter: ");
+                    choose = input.nextLine();
+                }
+                if (choose.equalsIgnoreCase("y")) {
+                    this.getPlayer().getInventory().setArmor(armor);
+                    System.out.println("Your current armor: " + this.getPlayer().getInventory().getArmor().getName());
+                } else if (choose.equalsIgnoreCase("n")) {
+                    System.out.println("You missed gift!");
+                }
+            }
+        } else if (chance >= 30 && chance < 55) {
+            // earn coin
+            chance = random.nextInt(101);
+            if (chance >= 0 && chance <= 20) {
+                System.out.println("Congrats, You win Coin!");
+                this.getMonster().setAward(10);
+            } else if (chance > 20 && chance < 51) {
+                System.out.println("Congrats, You win Coin!");
+                this.getMonster().setAward(5);
+            } else if (chance > 51 && chance <= 100) {
+                System.out.println("Congrats, You win Coin!");
+                this.getMonster().setAward(1);
+            }
+        } else {
+            System.out.println("Unfortunately, You didn't win gift!");
+        }
     }
 
     private void fight() {
@@ -123,17 +256,17 @@ public abstract class BattleLocation extends Location {
         }
     }
 
-    public void afterHit() {
+    private void afterHit() {
         System.out.println("Your Health: " + this.getPlayer().getHealth());
         System.out.println(this.monster.getName() + "\'s Health: " + this.monster.getHealth());
     }
 
-    public boolean randomAttack() {
+    private boolean randomAttack() {
         double randomNumber = Math.random() * 100;
         return (randomNumber >= 50);
     }
 
-    public void playerStats() {
+    private void playerStats() {
         System.out.println("Player Values");
         System.out.println("************************");
         System.out.println("Health: " + this.getPlayer().getHealth());
@@ -146,16 +279,21 @@ public abstract class BattleLocation extends Location {
 
     }
 
-    public void monsterStats(int i) {
+    private void monsterStats(int i) {
         System.out.println(i + ". " + this.getMonster().getName() + " Values");
         System.out.println("************************");
         System.out.println("Health: " + this.getMonster().getHealth());
+        if (this.getMonster().getDamage() == -1) {
+            Random random = new Random();
+            int damage = random.nextInt(4) + 3;
+            this.getMonster().setDamage(damage);
+        }
         System.out.println("Damage: " + this.getMonster().getDamage());
         System.out.println("Award: " + this.getMonster().getAward());
         System.out.println("************************");
     }
 
-    public int randomMonsterNumber() {
+    private int randomMonsterNumber() {
         Random r = new Random();
 
         return r.nextInt(this.getMaxMonster()) + 1;

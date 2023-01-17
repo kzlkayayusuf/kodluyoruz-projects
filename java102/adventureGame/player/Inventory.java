@@ -12,7 +12,7 @@ public class Inventory {
     public Inventory() {
         this.weapon = new Weapon(-1, "Punch", 0, 0);
         this.armor = new Armor(-1, "Bum Fodder", 0, 0);
-        this.awards = new String[3];
+        this.awards = new String[4];
     }
 
     public Weapon getWeapon() {
