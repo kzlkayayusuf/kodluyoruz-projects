@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 namespace hw9;
 class Program
 {
@@ -11,7 +12,8 @@ class Program
         //methods.mathMetodlar();
 
         Collections collections = new Collections();
-        collections.Examples();
+        //collections.Examples();
+        collections.ArrayListExample();
 
         Console.ReadLine();
     }
@@ -20,6 +22,49 @@ class Program
 
 public class Collections
 {
+    public void ArrayListExample()
+    {
+        ArrayList liste = new ArrayList();
+        //liste.Add("Ayşe");
+        liste.Add(2);
+        //liste.Add(true);
+        //liste.Add('A');
+        //liste.Add(2.5);
+
+        //System.Console.WriteLine(liste[2]);
+        foreach (var item in liste)
+            System.Console.WriteLine(item);
+
+        // AddRange
+        System.Console.WriteLine("#".PadLeft(10, '#') + " Add Range " + "#".PadLeft(10, '#'));
+        //string[] renkler = { "siyah", "beyaz", "turuncu" };
+        //liste.AddRange(renkler);
+        List<int> sayilar = new List<int>() { 1, 8, 7, 99, -88, 12, 0 };
+        liste.AddRange(sayilar);
+        foreach (var item in liste)
+            System.Console.WriteLine(item);
+
+        System.Console.WriteLine("#".PadLeft(10, '#') + " Sort " + "#".PadLeft(10, '#'));
+        liste.Sort();
+        foreach (var item in liste)
+            System.Console.WriteLine(item);
+
+        //Binary Search kullanılırken önce sort ile sıralama yapılmalı
+        System.Console.WriteLine("#".PadLeft(10, '#') + " Binary Search " + "#".PadLeft(10, '#'));
+        System.Console.WriteLine(liste.BinarySearch(99));
+
+        System.Console.WriteLine("#".PadLeft(10, '#') + " Reverse " + "#".PadLeft(10, '#'));
+        liste.Reverse();
+        foreach (var item in liste)
+            System.Console.WriteLine(item);
+
+        System.Console.WriteLine("#".PadLeft(10, '#') + " Clear " + "#".PadLeft(10, '#'));
+        liste.Clear();
+        foreach (var item in liste)
+            System.Console.WriteLine(item);
+
+
+    }
     public void Examples()
     {
         List<int> sayiListesi = new List<int>();
