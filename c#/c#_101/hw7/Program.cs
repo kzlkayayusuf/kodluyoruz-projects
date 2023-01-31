@@ -5,6 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
+        /*
         // Dizi tanımlama
         string[] renkler = new string[5];
         string[] hayvanlar = { "Kedi", "köpek", "Kuş", "Maymun" };
@@ -34,6 +35,53 @@ class Program
             toplam += item;
 
         System.Console.WriteLine("Ortalama: " + toplam / diziUzunlugu);
+        */
+
+        // Array sınıfı metodları
+        // Sort
+        int[] numberArray = { 23, 12, 55, 72, 3, 11, 17, 4 };
+        Console.WriteLine("####### Sırasız Dizi #######");
+        foreach (var number in numberArray)
+            System.Console.Write(number + ",");
+
+        Console.WriteLine();
+        Array.Sort(numberArray);
+        Console.WriteLine("####### Sıralı Dizi #######");
+        foreach (var number in numberArray)
+            System.Console.Write(number + ",");
+
+        // Clear
+        Console.WriteLine();
+        Array.Clear(numberArray, 2, 2);
+        Console.WriteLine("####### Array Clear #######");
+        foreach (var number in numberArray)
+            System.Console.Write(number + ",");
+
+        // Reverse
+        Console.WriteLine();
+        Array.Reverse(numberArray);
+        Console.WriteLine("####### Array Reverse #######");
+        foreach (var number in numberArray)
+            System.Console.Write(number + ",");
+
+        // IndexOf
+        Console.WriteLine();
+
+        Console.WriteLine("####### Array IndexOf #######");
+        System.Console.WriteLine(Array.IndexOf(numberArray, 72));
+        System.Console.WriteLine(Array.IndexOf(numberArray, 77));
+
+        // Resize
+        Console.WriteLine();
+
+        Console.WriteLine("####### Array Resize #######");
+        Array.Resize<int>(ref numberArray, 12);
+        numberArray[11] = 99;
+        foreach (var number in numberArray)
+            System.Console.Write(number + ",");
+
         Console.ReadLine();
     }
+
+    //string.Format("{0:0.##}", 256.583); // "256.58"
 }
