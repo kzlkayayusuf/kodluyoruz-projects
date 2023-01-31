@@ -1,19 +1,127 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace hw9;
 class Program
 {
     static void Main(string[] args)
     {
-        SpecialMethods methods = new SpecialMethods();
+        //SpecialMethods methods = new SpecialMethods();
         //methods.stringMetodlar();
         //methods.dateTimeMetodlar();
-        methods.mathMetodlar();
+        //methods.mathMetodlar();
+
+        Collections collections = new Collections();
+        collections.Examples();
 
         Console.ReadLine();
     }
 
 }
 
+public class Collections
+{
+    public void Examples()
+    {
+        List<int> sayiListesi = new List<int>();
+        sayiListesi.Add(23);
+        sayiListesi.Add(4);
+        sayiListesi.Add(5);
+        sayiListesi.Add(92);
+        sayiListesi.Add(14);
+        sayiListesi.Add(34);
+
+        List<string> renkListesi = new List<string>();
+        renkListesi.Add("kırmızı");
+        renkListesi.Add("mavi");
+        renkListesi.Add("sarı");
+        renkListesi.Add("turuncu");
+        renkListesi.Add("siyah");
+        renkListesi.Add("beyaz");
+
+        // Count
+        System.Console.WriteLine("Renk Listesi boyutu " + renkListesi.Count);
+        System.Console.WriteLine("Sayı Listesi boyutu " + sayiListesi.Count);
+
+        //foreach
+        System.Console.WriteLine("#".PadLeft(10, '#') + " Sayı Listesi " + "#".PadLeft(10, '#'));
+        foreach (var item in sayiListesi)
+            System.Console.WriteLine(item);
+        Console.WriteLine("-".PadLeft(10, '-') + " Sayı Listesi " + "-".PadLeft(10, '-'));
+        sayiListesi.ForEach(sayi => Console.WriteLine(sayi));
+        System.Console.WriteLine("#".PadLeft(10, '#') + " Renk Listesi " + "#".PadLeft(10, '#'));
+        foreach (var item in renkListesi)
+            System.Console.WriteLine(item);
+        Console.WriteLine("-".PadLeft(10, '-') + " Renk Listesi " + "-".PadLeft(10, '-'));
+        renkListesi.ForEach(renk => Console.WriteLine(renk));
+
+        // listeden eleman çıkarma
+        Console.WriteLine("-".PadLeft(10, '-') + " Eleman Çıkarma " + "-".PadLeft(10, '-'));
+        sayiListesi.Remove(34);
+        renkListesi.Remove("sarı");
+
+        sayiListesi.RemoveAt(1);
+        renkListesi.RemoveAt(3);
+
+        Console.WriteLine("-".PadLeft(10, '-') + " Sayı Listesi " + "-".PadLeft(10, '-'));
+        sayiListesi.ForEach(sayi => Console.WriteLine(sayi));
+        Console.WriteLine("-".PadLeft(10, '-') + " Renk Listesi " + "-".PadLeft(10, '-'));
+        renkListesi.ForEach(renk => Console.WriteLine(renk));
+
+        // listede arama
+        Console.WriteLine("-".PadLeft(10, '-') + " Contains " + "-".PadLeft(10, '-'));
+        if (sayiListesi.Contains(92))
+            System.Console.WriteLine("92 listede var");
+        //eleman ile index e erişme
+        Console.WriteLine("-".PadLeft(10, '-') + " Binary Search " + "-".PadLeft(10, '-'));
+        System.Console.WriteLine(renkListesi.BinarySearch("beyaz"));
+        //diziyi listeye çevirme
+        Console.WriteLine("-".PadLeft(10, '-') + " Diziyi listeye çevirme " + "-".PadLeft(10, '-'));
+        string[] hayvanlar = { "kedi", "köpek", "kuş", "kaplumbağa" };
+        List<string> listHayvanlar = new List<string>(hayvanlar);
+        listHayvanlar.ForEach(h => Console.WriteLine(h));
+
+        Console.WriteLine("-".PadLeft(10, '-') + " Listeyi temizle " + "-".PadLeft(10, '-'));
+        listHayvanlar.Clear();
+        listHayvanlar.ForEach(h => Console.WriteLine(h));
+
+        Console.WriteLine("-".PadLeft(10, '-') + " Listede nesne tutma " + "-".PadLeft(10, '-'));
+        List<Users> users = new List<Users>();
+        Users user1 = new Users();
+        user1.Name = "Ayşe";
+        user1.Surname = "Kara";
+        user1.Age = 25;
+
+        Users user2 = new Users();
+        user2.Name = "Ali";
+        user2.Surname = "Kara";
+        user2.Age = 32;
+        users.Add(user1);
+        users.Add(user2);
+
+        List<Users> newUsers = new List<Users>();
+        newUsers.Add(new Users()
+        {
+            Name = "Fatma",
+            Surname = "Kara",
+            Age = 18
+        });
+
+        users.ForEach(u => Console.WriteLine("Name: " + u.Name + " Surname: " + u.Surname + " Age: " + u.Age));
+        newUsers.ForEach(u => Console.WriteLine("Name: " + u.Name + " Surname: " + u.Surname + " Age: " + u.Age));
+
+    }
+}
+
+public class Users
+{
+    string name;
+    string surname;
+    int age;
+
+    public string Name { get => name; set => name = value; }
+    public string Surname { get => surname; set => surname = value; }
+    public int Age { get => age; set => age = value; }
+}
 public class SpecialMethods
 {
     public void mathMetodlar()
@@ -77,6 +185,10 @@ public class SpecialMethods
         System.Console.WriteLine(DateTime.Now.ToString("yyy"));
         System.Console.WriteLine(DateTime.Now.ToString("yyyy"));
 
+        string s = "07:05:45PM";
+        System.Console.WriteLine(DateTime.Parse(s).ToString("HH:mm:ss"));
+        s = "07:05:45AM";
+        System.Console.WriteLine(DateTime.Parse(s).ToString("HH:mm:ss"));
     }
     public void stringMetodlar()
     {
