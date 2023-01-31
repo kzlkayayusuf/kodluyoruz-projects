@@ -119,6 +119,40 @@ class Program
         //metot imzası-> metod adı, parametre sayısı, parametre tipi. Erişim belirteci imzaya dahil değil
         metotlar.EkranaYazdir("yusuf", "kızılkaya");
 
+        // Rekürsif(Öz Yinelemeli) Metot Kullanımı
+        // 3^4 = 3*3*3*3
+        Console.WriteLine("####### Rekürsif(Öz Yinelemeli) Metot #######");
+        int result = 1;
+        for (int i = 1; i < 5; i++)
+            result = result * 3;
+        Console.WriteLine(result);
+
+        Islemler islem = new(); // c# 9 ile birlikte instance ı böyle de oluşturur
+        Console.WriteLine(islem.Expo(3, 4));
+
+        // Extension(Genişletilmiş) Metot Kullanımı
+        //metodlar ve class ları static olmalı, this ifadesi olmalı
+        Console.WriteLine("####### Extension(Genişletilmiş) Metot #######");
+        string ifade = "C# Patikası";
+        bool b2 = ifade.CheckSpaces();
+        Console.WriteLine(b2);
+        if (b2)
+            Console.WriteLine(ifade.RemoveWhiteSpaces());
+
+        Console.WriteLine(ifade.MakeUpperCase());
+        Console.WriteLine(ifade.MakeLowerCase());
+
+        int[] newArr = { 9, 3, 6, 2, 1, 5, 5, 0 };
+        newArr.EkranaYazdir();
+        Console.WriteLine();
+        newArr.SortArray();
+        newArr.EkranaYazdir();
+        Console.WriteLine();
+
+        int number3 = 9;
+        System.Console.WriteLine(number3.isEvenNumber());
+
+        System.Console.WriteLine(ifade.GetFirstCharacter());
         Console.ReadLine();
     }
 
@@ -128,6 +162,57 @@ class Program
     }
 
     //string.Format("{0:0.##}", 256.583); // "256.58"
+}
+
+public static class Extension
+{
+    public static bool CheckSpaces(this string ifade)
+    {
+        return ifade.Contains(" ");
+    }
+    public static string RemoveWhiteSpaces(this string ifade)
+    {
+        string[] dizi = ifade.Split(" ");
+        return string.Join("*", dizi);
+    }
+    public static string MakeUpperCase(this string ifade)
+    {
+        return ifade.ToUpper();
+    }
+    public static string MakeLowerCase(this string ifade)
+    {
+        return ifade.ToLower();
+    }
+    public static int[] SortArray(this int[] param)
+    {
+        Array.Sort(param);
+        return param;
+    }
+    public static void EkranaYazdir(this int[] param)
+    {
+        foreach (var item in param)
+        {
+            Console.Write(item + ",");
+        }
+    }
+    public static bool isEvenNumber(this int param)
+    {
+        return param % 2 == 0;
+    }
+    public static string GetFirstCharacter(this string param)
+    {
+        return param.Substring(0, 1);
+    }
+}
+
+public class Islemler
+{
+    public int Expo(int sayi1, int üs)
+    {
+        if (üs < 2)
+            return sayi1;
+        return Expo(sayi1, üs - 1) * sayi1;
+    }
 }
 
 class Metotlar
