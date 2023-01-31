@@ -94,6 +94,31 @@ class Program
         metotlar.EkranaYazdir(Convert.ToString(t1));
         metotlar.EkranaYazdir(Convert.ToString(n1 + n2));
 
+        //out parametreler
+        Console.WriteLine("####### Out #######");
+        string sayi = "999";
+        bool b = int.TryParse(sayi, out int outSayi);
+        if (b)
+        {
+            metotlar.EkranaYazdir("Başarılı");
+            metotlar.EkranaYazdir(Convert.ToString(outSayi));
+        }
+        else
+        {
+            metotlar.EkranaYazdir("Başarısız!");
+        }
+
+        Console.WriteLine("####### Method Overloading #######");
+        metotlar.Topla(1, 2, out int sonuc);
+        metotlar.EkranaYazdir(Convert.ToString(sonuc));
+        string message = "message";
+        metotlar.EkranaYazdir(message);
+        int veri = 5;
+        metotlar.EkranaYazdir(veri);
+
+        //metot imzası-> metod adı, parametre sayısı, parametre tipi. Erişim belirteci imzaya dahil değil
+        metotlar.EkranaYazdir("yusuf", "kızılkaya");
+
         Console.ReadLine();
     }
 
@@ -111,6 +136,15 @@ class Metotlar
     {
         System.Console.WriteLine(veri);
     }
+    public void EkranaYazdir(int veri)
+    {
+        System.Console.WriteLine(veri);
+    }
+
+    public void EkranaYazdir(string veri1, string veri2)
+    {
+        System.Console.WriteLine(veri1 + " " + veri2);
+    }
 
     public int ArtirTopla(ref int number1, ref int number2)
     {
@@ -119,4 +153,11 @@ class Metotlar
 
         return number1 + number2;
     }
+
+    public int Topla(int a, int b, out int toplam)
+    {
+        toplam = a + b;
+        return toplam;
+    }
+
 }
