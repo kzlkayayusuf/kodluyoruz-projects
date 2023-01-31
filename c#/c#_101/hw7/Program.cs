@@ -80,8 +80,43 @@ class Program
         foreach (var number in numberArray)
             System.Console.Write(number + ",");
 
+
+        // methods
+        Console.WriteLine();
+        Console.WriteLine("####### C# Methods #######");
+        int t = Topla(3, 4);
+
+        Metotlar metotlar = new Metotlar();
+        metotlar.EkranaYazdir(Convert.ToString(t));
+        int n1 = 4;
+        int n2 = 5;
+        int t1 = metotlar.ArtirTopla(ref n1, ref n2);
+        metotlar.EkranaYazdir(Convert.ToString(t1));
+        metotlar.EkranaYazdir(Convert.ToString(n1 + n2));
+
         Console.ReadLine();
     }
 
+    private static int Topla(int number1, int number2)
+    {
+        return number1 + number2;
+    }
+
     //string.Format("{0:0.##}", 256.583); // "256.58"
+}
+
+class Metotlar
+{
+    public void EkranaYazdir(string veri)
+    {
+        System.Console.WriteLine(veri);
+    }
+
+    public int ArtirTopla(ref int number1, ref int number2)
+    {
+        number1 += 1;
+        number2 += 1;
+
+        return number1 + number2;
+    }
 }
