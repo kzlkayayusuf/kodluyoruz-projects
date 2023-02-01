@@ -69,8 +69,24 @@ class Program
         System.Console.WriteLine((int)Gunler.Pazartesi);
         System.Console.WriteLine(Gunler.Cuma);
         System.Console.WriteLine((int)Gunler.Cuma);
+
+        int number = Sinif.Number;
+        System.Console.WriteLine(number);
         Console.ReadLine();
     }
+}
+
+public static class Sinif
+{
+    private static int number;
+    /*
+    static sınıfın constructor ı olmaz
+    public Sinif()
+    {
+        Number++;
+    }
+*/
+    public static int Number { get => number; set => number = value; }
 }
 
 enum Gunler
