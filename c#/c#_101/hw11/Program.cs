@@ -37,17 +37,51 @@ class Program
         }
         */
 
-        Student student = new Student("yusuf", "kızılkaya", 279, 5);
-        student.GetStudentInformation();
+        /*
+                Student student = new Student("yusuf", "kızılkaya", 279, 5);
+                student.GetStudentInformation();
 
-        student.PassClass();
-        student.GetStudentInformation();
+                student.PassClass();
+                student.GetStudentInformation();
 
-        Student student1 = new Student("zeynep", "kızılkaya", 322, 0);
-        student1.FlunkClass();
-        student1.GetStudentInformation();
+                Student student1 = new Student("zeynep", "kızılkaya", 322, 0);
+                student1.FlunkClass();
+                student1.GetStudentInformation();
+                */
+
+        //Static sınıf üyesine erişim
+        Console.WriteLine("Öğrenci sayısı: {0}", Ogrenci.OgrenciSayisi);
+
+        //Static olmayan sinif üyesine erişim
+        Ogrenci ogrenci1 = new Ogrenci();
+        ogrenci1.Isim = "Deniz";
+        ogrenci1.Soyisim = "Arda";
+
+        Ogrenci ogrenci2 = new Ogrenci();
+        ogrenci2.Isim = "Ayşe";
+        ogrenci2.Soyisim = "Yılmaz";
+
+        Console.WriteLine("Öğrenci Sayısı: {0}", Ogrenci.OgrenciSayisi);
 
         Console.ReadLine();
+    }
+}
+
+class Ogrenci
+{
+    // static sınıfların içerisinde static olmayan herhangi bir metod veya property kullanamazsın
+    //static sınıflardan kalıtım uygulayamazsın
+
+    public static int OgrenciSayisi = 0;
+    public string Isim;
+    public string Soyisim;
+    public Ogrenci()
+    {
+        OgrenciSayisi++;
+    }
+    static Ogrenci()
+    {
+        OgrenciSayisi = 0;
     }
 }
 
