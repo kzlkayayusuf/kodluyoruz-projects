@@ -49,23 +49,40 @@ class Program
                 student1.GetStudentInformation();
                 */
 
-        //Static sınıf üyesine erişim
-        Console.WriteLine("Öğrenci sayısı: {0}", Ogrenci.OgrenciSayisi);
+        /*
+                //Static sınıf üyesine erişim
+                Console.WriteLine("Öğrenci sayısı: {0}", Ogrenci.OgrenciSayisi);
 
-        //Static olmayan sinif üyesine erişim
-        Ogrenci ogrenci1 = new Ogrenci();
-        ogrenci1.Isim = "Deniz";
-        ogrenci1.Soyisim = "Arda";
+                //Static olmayan sinif üyesine erişim
+                Ogrenci ogrenci1 = new Ogrenci();
+                ogrenci1.Isim = "Deniz";
+                ogrenci1.Soyisim = "Arda";
 
-        Ogrenci ogrenci2 = new Ogrenci();
-        ogrenci2.Isim = "Ayşe";
-        ogrenci2.Soyisim = "Yılmaz";
+                Ogrenci ogrenci2 = new Ogrenci();
+                ogrenci2.Isim = "Ayşe";
+                ogrenci2.Soyisim = "Yılmaz";
 
-        Console.WriteLine("Öğrenci Sayısı: {0}", Ogrenci.OgrenciSayisi);
+                Console.WriteLine("Öğrenci Sayısı: {0}", Ogrenci.OgrenciSayisi);
+        */
 
+        System.Console.WriteLine(Gunler.Pazartesi);
+        System.Console.WriteLine((int)Gunler.Pazartesi);
+        System.Console.WriteLine(Gunler.Cuma);
+        System.Console.WriteLine((int)Gunler.Cuma);
         Console.ReadLine();
     }
 }
+
+enum Gunler
+{
+    Pazartesi = 1,
+    Sali,
+    Carsamba,
+    Persembe,
+    Cuma,
+    Cumartesi,
+    Pazar
+};
 
 class Ogrenci
 {
