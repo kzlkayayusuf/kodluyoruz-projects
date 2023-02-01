@@ -83,6 +83,14 @@ class Ogrenci
     {
         OgrenciSayisi = 0;
     }
+
+    //struct(yapı)
+    struct OgrenciStruct
+    {
+        public string Isim;
+        public string Soyisim { get; set; }
+        public static int OgrenciSayısı = 0;
+    }
 }
 
 class Student
