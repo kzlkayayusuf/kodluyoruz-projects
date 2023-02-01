@@ -13,7 +13,9 @@ class Program
 
         Collections collections = new Collections();
         //collections.Examples();
-        collections.ArrayListExample();
+        //collections.ArrayListExample();
+        //collections.DictionaryExample();
+        collections.HackerRankDictionariesAndMaps();
 
         Console.ReadLine();
     }
@@ -22,6 +24,68 @@ class Program
 
 public class Collections
 {
+    public void HackerRankDictionariesAndMaps()
+    {
+        Dictionary<string, int> phoneBook = new Dictionary<string, int>();
+        int size = int.Parse(Console.ReadLine());
+        string param = "";
+        for (int i = 0; i < size; i++)
+        {
+            param = Console.ReadLine().ToLower();
+            phoneBook.Add(param.Split(" ")[0], int.Parse(param.Split(" ")[1]));
+        }
+        string name = Console.ReadLine().ToLower();
+        while (!string.IsNullOrEmpty(name))
+        {
+            if (phoneBook.ContainsKey(name))
+            {
+                Console.WriteLine(name + "=" + phoneBook[name]);
+            }
+            else
+            {
+                Console.WriteLine("Not found");
+            }
+            name = Console.ReadLine();
+
+        }
+
+
+    }
+    public void DictionaryExample()
+    {
+        Dictionary<int, string> users = new Dictionary<int, string>();
+        // key ler unique olmalı
+        users.Add(10, "Ayşe Yılmaz");
+        users.Add(12, "Ahmet Yılmaz");
+        //users.Add(12, "yusuf"); //runtime da hata verir
+        users.Add(7, "Deniz Arda");
+        users.Add(28, "Coşkun Coşar");
+
+        System.Console.WriteLine("#".PadLeft(10, '#') + " Elemanlara Erişim " + "#".PadLeft(10, '#'));
+        System.Console.WriteLine(users[28]);
+        foreach (var user in users)
+            System.Console.WriteLine(user);
+
+        System.Console.WriteLine("#".PadLeft(10, '#') + " Count " + "#".PadLeft(10, '#'));
+        System.Console.WriteLine(users.Count);
+        System.Console.WriteLine("#".PadLeft(10, '#') + " Contains " + "#".PadLeft(10, '#'));
+        System.Console.WriteLine(users.ContainsKey(10));
+        System.Console.WriteLine(users.ContainsValue("Coşkun"));
+
+        System.Console.WriteLine("#".PadLeft(10, '#') + " Remove " + "#".PadLeft(10, '#'));
+        users.Remove(7);
+        foreach (var user in users)
+            System.Console.WriteLine(user);
+
+        // Keys
+        System.Console.WriteLine("#".PadLeft(10, '#') + " Keys " + "#".PadLeft(10, '#'));
+        foreach (var user in users.Keys)
+            System.Console.WriteLine(user);
+        // Values
+        System.Console.WriteLine("#".PadLeft(10, '#') + " Values " + "#".PadLeft(10, '#'));
+        foreach (var user in users.Values)
+            System.Console.WriteLine(user);
+    }
     public void ArrayListExample()
     {
         ArrayList liste = new ArrayList();
