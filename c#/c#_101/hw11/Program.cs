@@ -37,13 +37,78 @@ class Program
         }
         */
 
+        Student student = new Student("yusuf", "kızılkaya", 279, 5);
+        student.GetStudentInformation();
 
+        student.PassClass();
+        student.GetStudentInformation();
+
+        Student student1 = new Student("zeynep", "kızılkaya", 322, 0);
+        student1.FlunkClass();
+        student1.GetStudentInformation();
 
         Console.ReadLine();
     }
 }
 
+class Student
+{
+    private string name;
+    private string surname;
+    private int no;
+    private int classNo;
 
+    public Student(string name, string surname, int no, int classNo)
+    {
+        Name = name;
+        Surname = surname;
+        No = no;
+        ClassNo = classNo;
+    }
+    public Student()
+    {
+
+    }
+
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
+
+    public string Surname { get => surname; set => surname = value; }
+    public int No { get => no; set => no = value; }
+    public int ClassNo
+    {
+        get => classNo;
+        set
+        {
+            if (value < 1)
+                System.Console.WriteLine("The Class can be at least 1.");
+            classNo = value < 1 ? 1 : value;
+        }
+    }
+
+    public void GetStudentInformation()
+    {
+        Console.WriteLine("-".PadLeft(10, '-') + " Student Information " + "-".PadLeft(10, '-'));
+        System.Console.WriteLine("Student Name:      {0}", this.Name);
+        System.Console.WriteLine("Student Surname:   {0}", this.Surname);
+        System.Console.WriteLine("Student No:        {0}", this.No);
+        System.Console.WriteLine("Student Class:     {0}", this.ClassNo);
+    }
+
+    public void PassClass()
+    {
+        this.ClassNo++;
+    }
+
+    public void FlunkClass()
+    {
+        this.ClassNo--;
+    }
+
+}
 class Person
 {
     public int age;
