@@ -1,3 +1,8 @@
+global using WebAPI.Models;
+global using WebAPI.Dtos.Cartoon;
+global using WebAPI.Services.CartoonService;
+global using AutoMapper;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +11,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+builder.Services.AddScoped<ICartoonService, CartoonService>();
 
 var app = builder.Build();
 
